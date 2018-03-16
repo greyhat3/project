@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+{%  block body %}
+
+<div id="wrapper">
+<!-- Navigation -->
+   <link href="{{ url_for('static', filename='css/table.css') }}" rel="stylesheet">
+      
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                  <li>
+                            <a href="/dashboard/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                         <li>
+                            <a href="/dashboard/"><i class="fa fa-chart fa-fw"></i>Line Chart </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="dashboard.html"></a>
+                                </li>
+                               
+                               
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>   
+ <ul><!--
+                                    <li>
+                                    <a href="">Correlation<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#"> </a>
+                                        </li>
+                                       -->
+                                        
+                            </ul>
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+       
+   
+    <!-- /#page-wrapper -->
+
+
+<div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                          <i class="fa fa-bar-chart-o fa-fw"></i> Stock Chart
+                       
+                       
+                         {% from "includes/_formhelpers.html" import render_field %}
+                                <form method="POST" action="/dataset/" >
+                                  
+                                    <div class="form-group" >
+                                         {{render_field(form.ticker, class_="form-control")}}  
+                                        
+                                      <!-- <input type="text" class="form-control" id="ticker" placeholder="Enter ticker symbol">-->
+                                    
+                                    <input type="submit" class="btn btn-primary" value="Search">
+                                    </div>
+                                
+                                    
+                                </form>
+
+                                {% if error %}
+                                    <p class="error"><strong>Error:</strong>{{error}}</p>
+                                {% endif %}             
+                                </ul>
+                            </div>
+                        </div>
+                       
+                     
+                    
+                            
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                    
+                      <div class="container-fluid">
+                           {% for table in tables %}
+    
+                            {{ table|safe }}
+                            {% endfor %}
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                 </div>
+                 </div>
+{% endblock %}
